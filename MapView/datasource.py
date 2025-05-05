@@ -37,7 +37,7 @@ class Datasource:
         self.user_id = user_id
         self.connection_status = None
         self._new_points = []
-        # лишаємо ensure_future
+
         asyncio.ensure_future(self.connect_to_server())
 
     def get_new_points(self):
@@ -64,7 +64,7 @@ class Datasource:
                     Logger.debug("SERVER DISCONNECT")
 
     def handle_received_data(self, data):
-        # data вже список словників, не парсимо вдруге
+
         Logger.debug(f"Received data: {data}")
         try:
             processed_agent_data_list = sorted(

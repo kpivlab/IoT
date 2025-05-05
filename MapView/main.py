@@ -52,15 +52,12 @@ class MapViewApp(App):
         """
         lat, lon = point
         Logger.debug(f"Updating car marker to ({lat}, {lon})")
-        # Видалити старий маркер
         try:
             self.map_view.remove_marker(self.car_marker)
         except Exception:
             pass
-        # Оновити координати
         self.car_marker.lat = lat
         self.car_marker.lon = lon
-        # Додати назад
         self.map_view.add_marker(self.car_marker)
 
     def set_pothole_marker(self, point):
@@ -89,7 +86,6 @@ class MapViewApp(App):
         )
         self.map_view.add_layer(self.map_layer, mode="scatter")
 
-        # Початковий маркер машини
         self.car_marker = MapMarker(
             lat=50.45034509664691,
             lon=30.5246114730835,

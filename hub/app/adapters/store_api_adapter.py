@@ -12,7 +12,6 @@ class StoreApiAdapter(StoreGateway):
     def save_data(self, processed_agent_data_batch: list[ProcessedAgentData]) -> bool:
         url = f"{self.api_base_url}/processed_agent_data/"
         try:
-            # Використовуємо mode="json" щоб datetime перетворився в рядок
             payload = [item.model_dump(mode="json") for item in processed_agent_data_batch]
             response = requests.post(url, json=payload, timeout=5)
             response.raise_for_status()

@@ -2,9 +2,9 @@ from app.entities.agent_data import AgentData
 from app.entities.processed_agent_data import ProcessedAgentData
 from typing import Optional
 
-MIN_DELTA = 2500         # ігнорувати взагалі все нижче 2.5k
-THRESHOLD_BUMP = 8000    # bump — лише дуже різка зміна
-THRESHOLD_POTHOLE = 16000 # pothole — ще рідкісніший, екстремальний стрибок
+MIN_DELTA = 2500        
+THRESHOLD_BUMP = 8000  
+THRESHOLD_POTHOLE = 16000 
 
 
 previous_z: Optional[float] = None
@@ -21,7 +21,6 @@ def process_agent_data(agent_data: AgentData) -> ProcessedAgentData:
 
     previous_z = z
 
-    # Ігнорувати слабкі коливання
     if delta < MIN_DELTA:
         state = 'normal'
     elif delta > THRESHOLD_POTHOLE:
